@@ -29,50 +29,50 @@ class Individual:
     def mutate(self):
         #add a random chance based on our mtuate_multiplier attriubutes to:
         #add a new point
-        if(random.randInt(0,1) == 1):
+        if(random.randint(0,1) == 1):
             point = {
                 "x": random.randint(0,self.WIDTH - 1),
                 "y": random.randint(0, self.HEIGHT - 1),
                 "color": random.randint(0,255),
                 "radius": random.randint(0,5)
             }
-        self.points.append(point)
+            self.points.append(point)
              
         #remove an existing point
-        if(random.randInt(0,1) == 1):
-            for i in range(random.randInt(0,len(self.points) - 1, len(self.points))):
-                if i < len(self.points) - 1:
+        if(random.randint(0,1) == 1):
+            for i in range(random.randint(0, len(self.points) - 1)):
+                if i != len(self.points) - 1:
                     self.points[i] = self.points[i + 1]
             self.points = self.points[:len(self.points) - 2]
 
         for pt in self.points:
             #change the x value of an existing point
-            point["x"] += random.randInt(-self.movement_mutate_multiplier, self.movement_mutate_multiplier)
-            if point["x"] > self.WIDTH:
-                point["x"] = self.WIDTH
-            if point["x"] < 0:
-                point["x"] = 0
+            pt["x"] += random.randint(-self.movement_mutate_multiplier, self.movement_mutate_multiplier)
+            if pt["x"] > self.WIDTH:
+                pt["x"] = self.WIDTH
+            if pt["x"] < 0:
+                pt["x"] = 0
         
             #change the y value of an existing point
-            point["y"] += random.randInt(-self.movement_mutate_multiplier, self.movement_mutate_multiplier)
-            if point["y"] > self.HEIGHT:
-                point["y"] = self.HEIGHT
-            if point["y"] < 0:
-                point["y"] = 0
+            pt["y"] += random.randint(-self.movement_mutate_multiplier, self.movement_mutate_multiplier)
+            if pt["y"] > self.HEIGHT:
+                pt["y"] = self.HEIGHT
+            if pt["y"] < 0:
+                pt["y"] = 0
 
             #change the color of an existing point
-            point["color"] += random.randInt(-self.color_mutate_multiplier, self.color_mutate_multiplier)
-            if point["color"] > 255:
-                point["color"] = 255
-            if point["color"] < 0:
-                point["color"] = 0
+            pt["color"] += random.randint(-self.color_mutate_multiplier, self.color_mutate_multiplier)
+            if pt["color"] > 255:
+                pt["color"] = 255
+            if pt["color"] < 0:
+                pt["color"] = 0
 
             #change the radius of an existing point
-            point["radius"] += random.randInt(-self.radius_mutate_multiplier, self.radius_mutate_multiplier)
-            if point["radius"] > 50:
-                point["radius"] = 50
-            if point["radius"] < 0:
-                point["radius"] = 0
+            pt["radius"] += random.randint(-self.radius_mutate_multiplier, self.radius_mutate_multiplier)
+            if pt["radius"] > 50:
+                pt["radius"] = 50
+            if pt["radius"] < 0:
+                pt["radius"] = 0
 
     #this is defined for you, i used PIL to create images based on self.points
     # and its attributes

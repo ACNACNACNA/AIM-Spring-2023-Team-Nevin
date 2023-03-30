@@ -12,15 +12,17 @@ class EvolutionSimulator:
     #should remove the second half of self.population [a,b,c,d] 
     # after kill_population = [a,b]
     def kill_population(self):
-        self.population = self.population[:len(self.population)/2]
+        self.population = self.population[:len(self.population) // 2]
 
     #doubles the population. For each indivuals in self.population 
     # make an identical copy of them, and then call the .mutate method 
     # on that individual
     def reproduce(self):
-        for i in range(len(self.population)):
-            self.population.append(self.population[i])
-            self.population[-1].mutate()
+        n = len(self.population)
+        for i in range(n):
+            newIndivual = copy.deepcopy(self.population[i])
+            newIndivual.mutate()
+            self.population.append(newIndivual)
 
     #create self.POPULATION_SIZE individuals add add them to self.population
     def create_population(self):
